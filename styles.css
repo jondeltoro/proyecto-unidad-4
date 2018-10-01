@@ -134,6 +134,10 @@ section#body-video {
      justify-content: center;*/
 }
 
+xxxsection#body-d3 * {
+    background-color: #ccc;
+}
+
 section#footer {
     border-top: 1px solid #B8C00E;
 }
@@ -443,4 +447,59 @@ section#footer-social {
 .original {
     color: #ef6670;
     font-size: 14px;
+}
+
+.foreground path {
+    fill: none;
+    stroke: steelblue;
+    stroke-opacity: .7;
+}
+
+.brush .extent {
+    fill-opacity: .3;
+    stroke: #fff;
+    shape-rendering: crispEdges;
+}
+
+.axis line, .axis path {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    fill: white;
+}
+
+#body-d3 svg {
+    font: 10px sans-serif;
+}
+
+#body-d3 .background path {
+    fill: none;
+    stroke: #ccc;
+    stroke-opacity: .4;
+    shape-rendering: crispEdges;
+}
+
+#body-d3 .foreground path {
+    fill: none;
+    stroke: steelblue;
+    stroke-opacity: .7;
+}
+
+#body-d3 .brush .extent {
+    fill-opacity: .3;
+    stroke: #fff;
+    shape-rendering: crispEdges;
+}
+
+#body-d3 .axis line, .axis path {
+    fill: none;
+    stroke: #fff;
+    shape-rendering: crispEdges;
+}
+
+xxx#body-d3 .axis text {
+    text-shadow: 0 1px 0 #fff;
 }

@@ -13,7 +13,7 @@
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.3.0/snap.svg-min.js"></script>
-
+    <script src="https://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
 </head>
 <body>
@@ -187,7 +187,7 @@
 
             </div>
         </section>
-        <section id="body-d3" class="col-4">d3</section>
+        <section id="body-d3" class="col-4"></section>
     </section>
     <section id="footer" class="row">
         <section id="footer-info" class="col-sm">
@@ -231,5 +231,10 @@
         crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="SVGChart.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        ExecuteD3();
+    });
+</script>
 </body>
 </html>
