@@ -3,21 +3,44 @@ html, body {
     width: 100%;
 }
 
+section {
+    border: 1px solid red;
+}
+
 section#app {
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
+section#header-title {
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+}
+
 section#body {
-    flex:1;
+    flex: 1;
 }
 
-#page {
-    border: 1px solid black;
+section#footer-info {
+    text-align: right;
 }
 
-section {
-    border: 1px solid red;
+div#footer-info-address {
+    display: inline-block;
+    text-align: center;
 }
 
+section#footer-social {
+    padding-top: 5px;
+}
+
+.iconic-container {
+    display: inline;
+}
+
+.facebook {
+    width: 31px;
+    height: 31px;
+}
