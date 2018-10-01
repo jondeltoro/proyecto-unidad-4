@@ -3,9 +3,20 @@ html, body {
     width: 100%;
 }
 
+section#app {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+section#body {
+    flex:1;
+}
+
 #page {
     border: 1px solid black;
 }
+
 section {
     border: 1px solid red;
 }
