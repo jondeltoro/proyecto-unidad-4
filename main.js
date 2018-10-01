@@ -14,7 +14,7 @@ function ExecuteD3(){
         .attr("height", h + m[0] + m[2])
         .append("g")
         .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
-    d3.csv("data/cost-of-living.csv", function(error, cities) {
+    d3.csv("https://gist.githubusercontent.com/jondeltoro/c43a741a33192966a1af72b83604627a/raw/19f5e9c44debfd7c33fb53a7316955c7c58bccda/cost-of-living.csv", function(error, cities) {
         if (error) throw error;
         // Extract the list of dimensions and create a scale for each.
         x.domain(dimensions = d3.keys(cities[0]).filter(function(d) {
