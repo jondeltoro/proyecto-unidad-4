@@ -62,21 +62,30 @@ div#footer-info-address {
 }
 
 section#footer-social {
+    text-align: center;
     padding-top: 5px;
     opacity: 0.5;
-
 }
 
 .iconic-container {
     display: inline;
 }
 
-.sm-icon:visited{
-    color: black;
+.sm-icon:visited {
+    color: white;
 }
 
 .facebook {
     width: 31px;
     height: 31px;
     opacity: 0.5;
+}
+
+@media (max-width: 575px) {
+    div#footer-info-address {
+        display: block;
+        position: static;
+        right: 0px;
+        float: unset;
+    }
 }
