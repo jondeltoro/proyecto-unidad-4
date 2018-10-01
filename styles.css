@@ -44,6 +44,16 @@ section#form {
     overflow: auto;
 }
 
+section#form.hidden {
+    display: none;
+}
+
+section#form-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 section#form select#FControlSelect2 {
     height: 4.5em;
 }
@@ -66,6 +76,27 @@ section#form-buttons button {
     margin-bottom: 3px;
 }
 
+section#form-sent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+section#form-sent.hidden {
+    display: none;
+}
+
+section#form-fields.hidden {
+    display: none;
+}
+
+section#form-sent > div {
+    height: 8.5em;
+    flex: unset;
+    margin-top: 1em;
+}
+
 section#body {
     flex: 1;
     overflow: auto;
@@ -73,16 +104,6 @@ section#body {
 
 section#body.hidden {
     display: none;
-}
-
-section#form.hidden {
-    display: none;
-}
-
-section#form-fields {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 section#body-video {
