@@ -21,3 +21,6 @@ section {
     border: 1px solid red;
 }
 
+.sm-icon:visited{
+    color: black;
+}
