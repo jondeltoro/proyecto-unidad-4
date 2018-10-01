@@ -40,11 +40,13 @@ section#footer {
 }
 
 section#footer-info {
-    text-align: right;
 }
 
 div#footer-info-address {
     display: inline-block;
+    position: relative;
+    right: 40px;
+    float: right;
     text-align: center;
     font-size: small;
     opacity: 0.5;
