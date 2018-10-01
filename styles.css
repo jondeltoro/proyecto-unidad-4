@@ -6,7 +6,7 @@ html, body {
 }
 
 section {
-    border: 1px solid red;
+    /*border: 1px solid red;*/
 }
 
 section#app {
@@ -15,8 +15,14 @@ section#app {
     flex-direction: column;
 }
 
+section#header {
+    border-bottom: 1px solid #B8C00E;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
 section#header-logo img {
-    border: 3px solid white;
+    border: 3px solid #fff;
 }
 
 section#header-title {
@@ -27,6 +33,10 @@ section#header-title {
 
 section#body {
     flex: 1;
+}
+
+section#footer {
+    border-top: 1px solid #B8C00E;
 }
 
 section#footer-info {
