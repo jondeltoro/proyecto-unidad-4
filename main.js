@@ -28,6 +28,10 @@ function hideForm() {
     document.querySelector("section#form").classList.add("hidden");
 }
 
+function goHome() {
+    hideForm();
+}
+
 /* polyfills */
 // 1. String.prototype.trim polyfill
 if (!"".trim) String.prototype.trim = function () {
