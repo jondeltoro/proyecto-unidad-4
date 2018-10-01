@@ -33,6 +33,15 @@ section#header-title {
 
 section#body {
     flex: 1;
+    overflow: auto;
+}
+
+section#body-video {
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+     justify-content: center;*/
 }
 
 section#footer {
