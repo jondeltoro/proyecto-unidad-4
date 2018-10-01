@@ -31,12 +31,18 @@ section#header-title {
     font-weight: bold;
 }
 
+section#header-bookmark-form {
+    padding: .5rem 1rem;
+}
+
 #header-bookmark-form-link:link,
 #header-bookmark-form-link:active,
 #header-bookmark-form-link:hover,
 #header-bookmark-form-link:visited {
     color: #fff;
     text-decoration: none;
+    display: inline-block;
+    padding: .5rem 1rem;
 }
 
 section#form {
@@ -161,6 +167,7 @@ section#footer-social {
 
     section#header-bookmark-form {
         text-align: right;
+        padding: .5rem 1rem;
     }
 }
 
