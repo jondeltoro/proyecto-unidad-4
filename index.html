@@ -29,9 +29,56 @@
                     Menu
                 </section>
                 <section id="header-bookmark-form" class="col-sm">
-                    Informes
+                    <a href="javascript:" id="header-bookmark-form-link" onclick="showForm()">Informes</a>
                 </section>
             </section>
+        </section>
+    </section>
+    <section id="form" class="row hidden">
+        <section id="form-fields" class="col-12">
+            <p>Por favor llene el siguiente formulario:</p>
+            <form class="col-6" onsubmit="saveForm(event)">
+                <div class="form-group">
+                    <label for="FControlInput1">Nombre Completo</label>
+                    <input type="text" class="form-control" id="FControlInput1"
+                           placeholder="Nombre Apellido" required>
+                </div>
+                <div class="form-group">
+                    <label for="FControlInput2">Dirección de correo electrónico</label>
+                    <input type="email" class="form-control" id="FControlInput2"
+                           placeholder="nombre@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="FControlSelect1">¿Cómo se enteró de nuestros servicios?</label>
+                    <select class="form-control" id="FControlSelect1">
+                        <option>Televisión</option>
+                        <option>Radio</option>
+                        <option>Facebook</option>
+                        <option>Twitter</option>
+                        <option>Un amigo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="FControlSelect2">Servicios que requiere:</label>
+                    <select multiple class="form-control" id="FControlSelect2" required>
+                        <option>Big Data</option>
+                        <option>Gráficos en SVG</option>
+                        <option>Visualización en D3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="FControlTextarea1">Comentarios:</label>
+                    <textarea class="form-control" id="FControlTextarea1" rows="3"></textarea>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="Check1">
+                    <label class="form-check-label" for="Check1">Envíame publicidad</label>
+                </div>
+                <section id="form-buttons">
+                    <button class="btn btn-primary" type="submit">Enviar</button>
+                    <button class="btn btn-primary" type="button" onclick="hideForm()">Cancelar</button>
+                </section>
+            </form>
         </section>
     </section>
     <section id="body" class="row">

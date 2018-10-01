@@ -31,9 +31,58 @@ section#header-title {
     font-weight: bold;
 }
 
+#header-bookmark-form-link:link,
+#header-bookmark-form-link:active,
+#header-bookmark-form-link:hover,
+#header-bookmark-form-link:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+section#form {
+    flex: 1;
+    overflow: auto;
+}
+
+section#form select#FControlSelect2 {
+    height: 4.5em;
+}
+
+section#form textarea#FControlTextarea1 {
+    height: 3.5em;
+}
+
+section#form .form-group {
+    margin-bottom: 10px;
+}
+
+section#form-buttons {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+section#form-buttons button {
+    min-width: 90px;
+    margin-bottom: 3px;
+}
+
 section#body {
     flex: 1;
     overflow: auto;
+}
+
+section#body.hidden {
+    display: none;
+}
+
+section#form.hidden {
+    display: none;
+}
+
+section#form-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 section#body-video {
@@ -87,5 +136,9 @@ section#footer-social {
         position: static;
         right: 0px;
         float: unset;
+    }
+
+    section#header-bookmark-form {
+        text-align: right;
     }
 }
