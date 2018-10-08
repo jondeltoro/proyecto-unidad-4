@@ -133,8 +133,6 @@ function saveForm(event) {
     document.querySelector("section#form-sent").classList.remove("hidden");
     var showMain = function () {
         hideForm();
-        document.querySelector("section#form-fields").classList.remove("hidden");
-        document.querySelector("section#form-sent").classList.add("hidden");
     }
     timeoutHandler = setTimeout(showMain, 4000);
 
@@ -143,6 +141,8 @@ function saveForm(event) {
 
 function hideForm() {
     clearTimeout(timeoutHandler);
+    document.querySelector("section#form-fields").classList.remove("hidden");
+    document.querySelector("section#form-sent").classList.add("hidden");
     document.querySelector("section#body").classList.remove("hidden");
     document.querySelector("section#form").classList.add("hidden");
 }
