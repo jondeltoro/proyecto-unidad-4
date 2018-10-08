@@ -68,6 +68,15 @@ section#form.hidden {
     display: none;
 }
 
+section#savedforms {
+    flex: 1;
+    overflow: auto;
+}
+
+section#savedforms.hidden {
+    display: none;
+}
+
 section#form-fields {
     display: flex;
     flex-direction: column;

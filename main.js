@@ -1,4 +1,4 @@
-function ExecuteD3(){
+function ExecuteD3() {
     var m = [30, 10, 10, 10],
         w = 450 - m[1] - m[3],
         h = 600 - m[0] - m[2];
@@ -14,12 +14,14 @@ function ExecuteD3(){
         .attr("height", h + m[0] + m[2])
         .append("g")
         .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
-    d3.csv("https://gist.githubusercontent.com/jondeltoro/c43a741a33192966a1af72b83604627a/raw/19f5e9c44debfd7c33fb53a7316955c7c58bccda/cost-of-living.csv", function(error, cities) {
+    d3.csv("https://gist.githubusercontent.com/jondeltoro/c43a741a33192966a1af72b83604627a/raw/19f5e9c44debfd7c33fb53a7316955c7c58bccda/cost-of-living.csv", function (error, cities) {
         if (error) throw error;
         // Extract the list of dimensions and create a scale for each.
-        x.domain(dimensions = d3.keys(cities[0]).filter(function(d) {
+        x.domain(dimensions = d3.keys(cities[0]).filter(function (d) {
             return d != "City" && (y[d] = d3.scale.linear()
-                .domain(d3.extent(cities, function(p) { return +p[d]; }))
+                .domain(d3.extent(cities, function (p) {
+                    return +p[d];
+                }))
                 .range([h, 0]));
         }));
         // Add grey background lines for context.
@@ -41,11 +43,15 @@ function ExecuteD3(){
             .data(dimensions)
             .enter().append("g")
             .attr("class", "dimension")
-            .attr("transform", function(d) { return "translate(" + x(d) + ")"; });
+            .attr("transform", function (d) {
+                return "translate(" + x(d) + ")";
+            });
         // Add an axis and title.
         g.append("g")
             .attr("class", "axis")
-            .each(function(d) { d3.select(this).call(axis.scale(y[d])); })
+            .each(function (d) {
+                d3.select(this).call(axis.scale(y[d]));
+            })
             .append("text")
             .attr("text-anchor", "middle")
             .attr("y", -9)
@@ -53,7 +59,9 @@ function ExecuteD3(){
         // Add and store a brush for each axis.
         g.append("g")
             .attr("class", "brush")
-            .each(function(d) { d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brush", brush)); })
+            .each(function (d) {
+                d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brush", brush));
+            })
             .selectAll("rect")
             .attr("x", -8)
             .attr("width", 16);
@@ -61,22 +69,40 @@ function ExecuteD3(){
 
     // Returns the path for a given data point.
     function path(d) {
-        return line(dimensions.map(function(p) { return [x(p), y[p](d[p])]; }));
+        return line(dimensions.map(function (p) {
+            return [x(p), y[p](d[p])];
+        }));
     }
+
     // Handles a brush event, toggling the display of foreground lines.
     function brush() {
-        var actives = dimensions.filter(function(p) { return !y[p].brush.empty(); }),
-            extents = actives.map(function(p) { return y[p].brush.extent(); });
-        foreground.style("display", function(d) {
-            return actives.every(function(p, i) {
+        var actives = dimensions.filter(function (p) {
+                return !y[p].brush.empty();
+            }),
+            extents = actives.map(function (p) {
+                return y[p].brush.extent();
+            });
+        foreground.style("display", function (d) {
+            return actives.every(function (p, i) {
                 return extents[i][0] <= d[p] && d[p] <= extents[i][1];
             }) ? null : "none";
         });
     }
 }
 
+var keys = [
+    "nombre",
+    "correo",
+    "medio",
+    "servicios",
+    "comentarios",
+    "publicidad",
+];
+
+var timeoutHandler = null;
 
 function showForm() {
+    hideSavedForms();
     document.querySelector("section#body").classList.add("hidden");
     document.querySelector("section#form").classList.remove("hidden");
 }
@@ -87,8 +113,22 @@ function saveForm(event) {
     event.stopPropagation();
     var form = event.target;
     if (form && form.reset) {
+        var data = keys.reduce(function (acc, el) {
+            acc[el] = $('.data-' + el).val();
+            if (el === 'publicidad') {
+                acc[el] = $('.data-' + el).prop("checked");
+            }
+            return acc;
+        }, {});
+        if (data && data['nombre']) {
+            var newPostKey = firebase.database().ref().child('informes').push().key;
+            var updates = {};
+            updates['/informes/' + newPostKey] = data;
+            firebase.database().ref().update(updates);
+        }
         form.reset();
     }
+
     document.querySelector("section#form-fields").classList.add("hidden");
     document.querySelector("section#form-sent").classList.remove("hidden");
     var showMain = function () {
@@ -96,18 +136,67 @@ function saveForm(event) {
         document.querySelector("section#form-fields").classList.remove("hidden");
         document.querySelector("section#form-sent").classList.add("hidden");
     }
-    setTimeout(showMain, 4000);
+    timeoutHandler = setTimeout(showMain, 4000);
 
     return false;
 }
 
 function hideForm() {
+    clearTimeout(timeoutHandler);
     document.querySelector("section#body").classList.remove("hidden");
     document.querySelector("section#form").classList.add("hidden");
 }
 
 function goHome() {
     hideForm();
+    hideSavedForms();
+}
+
+function goSavedForms() {
+    hideForm();
+    showSavedForms();
+}
+
+function showSavedForms() {
+    firebase.database().ref('informes').once('value').then(function (snapshot) {
+        var datos = snapshot.toJSON();
+        if (datos && typeof(datos) === 'object') {
+            var table = $('tbody#saved-records');
+            table.empty();
+            var rows = Object.keys(datos);
+            rows.forEach(function (row) {
+                var registro = datos[row];
+                var tr = $('<tr></tr>')
+                var campos = Object.keys(registro);
+                campos && keys.forEach(function (campo) {
+                    var dato = registro[campo];
+                    if (campo !== 'servicios' && campo !== 'publicidad') {
+                        tr.append($('<td>' + dato + '</td>'));
+                    } else if (campo === 'servicios') {
+                        var servKeys = dato ? Object.keys(dato) : [];
+                        var servicios = servKeys.reduce(function (acc, el) {
+                            acc.push(dato[el])
+                            return acc;
+                        }, []).join(', ');
+                        tr.append($('<td>' + servicios + '</td>'));
+                    } else if (campo === 'publicidad') {
+                        tr.append($('<td>' + (dato ? 'si' : 'no') + '</td>'));
+                    }
+                });
+                table.append(tr);
+            });
+        }
+
+
+        // ...
+    });
+    document.querySelector("section#body").classList.add("hidden");
+    document.querySelector("section#savedforms").classList.remove("hidden");
+}
+
+function hideSavedForms() {
+    document.querySelector("section#body").classList.remove("hidden");
+    document.querySelector("section#savedforms").classList.add("hidden");
 }
 
 /* polyfills */

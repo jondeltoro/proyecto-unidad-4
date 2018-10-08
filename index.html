@@ -13,6 +13,19 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.3.0/snap.svg-min.js"></script>
     <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBFGZBwXMPLvOD3_ncT7BCKtJ7Et1pd4sU",
+            authDomain: "bigdata1303-517d6.firebaseapp.com",
+            databaseURL: "https://bigdata1303-517d6.firebaseio.com",
+            projectId: "bigdata1303-517d6",
+            storageBucket: "bigdata1303-517d6.appspot.com",
+            messagingSenderId: "734662032446"
+        };
+        firebase.initializeApp(config);
+    </script>
     <script type="text/javascript" src="main.js"></script>
 </head>
 <body>
@@ -39,7 +52,7 @@
                                     <a class="nav-link active" href="javascript:goHome()">Inicio</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="http://hotmail.com" target="_blank">Clientes</a>
+                                    <a class="nav-link" href="javascript:goSavedForms()" target="_blank">Formulários</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="http://gmail.com" target="_blank">Contratar</a>
@@ -50,9 +63,11 @@
                                         Más info
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="http://google.com" target="_blank">Big data action</a>
+                                        <a class="dropdown-item" href="http://google.com" target="_blank">Big data
+                                            action</a>
                                         <a class="dropdown-item" href="http://yahoo.com" target="_blank">D3 token</a>
-                                        <a class="dropdown-item" href="http://nasa.gov" target="_blank">Machine Learning</a>
+                                        <a class="dropdown-item" href="http://nasa.gov" target="_blank">Machine
+                                            Learning</a>
                                     </div>
                                 </li>
                             </ul>
@@ -65,33 +80,52 @@
             </section>
         </section>
     </section>
+    <section id="savedforms" class="row hidden">
+        <section id="forms-saved" class="col-12">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Se enteró</th>
+                    <th scope="col">Servicios</th>
+                    <th scope="col">Comentarios</th>
+                    <th scope="col">Checkbox</th>
+                </tr>
+                </thead>
+                <tbody id="saved-records">
+                </tbody>
+            </table>
+        </section>
+    </section>
     <section id="form" class="row hidden">
         <section id="form-fields" class="col-12">
             <p>Por favor llene el siguiente formulario:</p>
             <form class="col-6" onsubmit="saveForm(event)">
                 <div class="form-group">
                     <label for="FControlInput1">Nombre Completo</label>
-                    <input type="text" class="form-control" id="FControlInput1"
-                           placeholder="Nombre Apellido" required>
+                    <input type="text" class="form-control data-nombre" id="FControlInput1"
+                           placeholder="Nombre Apellido" require>
                 </div>
                 <div class="form-group">
                     <label for="FControlInput2">Dirección de correo electrónico</label>
-                    <input type="email" class="form-control" id="FControlInput2"
-                           placeholder="nombre@mail.com" required>
+                    <input type="email" class="form-control data-correo" id="FControlInput2"
+                           placeholder="nombre@mail.com" require>
                 </div>
                 <div class="form-group">
                     <label for="FControlSelect1">¿Cómo se enteró de nuestros servicios?</label>
-                    <select class="form-control" id="FControlSelect1">
-                        <option>Televisión</option>
-                        <option>Radio</option>
-                        <option>Facebook</option>
-                        <option>Twitter</option>
-                        <option>Un amigo</option>
+                    <select class="form-control data-medio" id="FControlSelect1" require>
+                        <option value="" selected>Seleccione</option>
+                        <option value="Televisión">Televisión</option>
+                        <option value="Radio">Radio</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Twitter">Twitter</option>
+                        <option value="Un amigo">Un amigo</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="FControlSelect2">Servicios que requiere:</label>
-                    <select multiple class="form-control" id="FControlSelect2" required>
+                    <select multiple class="form-control data-servicios" id="FControlSelect2" require>
                         <option>Big Data</option>
                         <option>Gráficos en SVG</option>
                         <option>Visualización en D3</option>
@@ -99,10 +133,10 @@
                 </div>
                 <div class="form-group">
                     <label for="FControlTextarea1">Comentarios:</label>
-                    <textarea class="form-control" id="FControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control data-comentarios" id="FControlTextarea1" rows="3"></textarea>
                 </div>
                 <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="Check1">
+                    <input type="checkbox" class="form-check-input data-publicidad" id="Check1">
                     <label class="form-check-label" for="Check1">Envíame publicidad</label>
                 </div>
                 <section id="form-buttons">
