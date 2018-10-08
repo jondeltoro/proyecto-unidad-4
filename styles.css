@@ -170,7 +170,10 @@ section#footer-social {
     height: 31px;
     opacity: 0.5;
 }
-
+.clients img{
+    width: 50%;
+    margin-top:1em;
+}
 @media (max-width: 575px) {
     div#footer-info-address {
         display: none;
