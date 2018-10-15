@@ -21,7 +21,7 @@ $(document).ready(function () {
     username: 'jondeltoro'
   });
 
-  const source = new carto.source.Dataset('ne_10m_populated_places_simple');
+  const source = new carto.source.Dataset('earthquake');
   const style = new carto.style.CartoCSS(`
         #layer {
           marker-width: 7;
