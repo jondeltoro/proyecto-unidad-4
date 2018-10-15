@@ -17,8 +17,8 @@ $(document).ready(function () {
   }).addTo(map);
 
   const client = new carto.Client({
-    apiKey: 'default_public',
-    username: 'cartojs-test'
+    apiKey: '90629c29fd018b33d1cafc3839703d37d79b663e',
+    username: 'jondeltoro'
   });
 
   const source = new carto.source.Dataset('ne_10m_populated_places_simple');
